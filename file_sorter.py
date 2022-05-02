@@ -4,7 +4,7 @@ import os.path
 import shutil
 
 def GetDataPathFromUser(): 
-    print("Path of Source Data:")
+    print("Please enter folder path:")
     userDataPath=input()
     return userDataPath
     #add error checking here
