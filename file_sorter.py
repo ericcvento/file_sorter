@@ -3,6 +3,9 @@ from os import walk, makedirs
 import os.path
 import shutil
 
+frompath = "testdata"
+topath = "sorted"
+
 def MakeFileList(path):
     print("Scanning Directory...")
     filelist=[]
@@ -47,8 +50,6 @@ def PrintDirectory(filelist,topath):
 def CopyFiles(filelist):
     print("Copying Files...")
     for f in filelist:
-        print(len(filelist))
-        print(filelist.index(f))
         fname, extension = os.path.splitext(f)
         del fname
         
@@ -90,9 +91,6 @@ def Main(frompath,topath):
     CreateToFolders(extensions)
     PrintDirectory(filelist,topath)
     CopyFiles(filelist)
-
-frompath = str(r"E:\CPU Backup 22DEC2014")
-topath = str(r"E:\archiver_test")
 
 Main(frompath, topath)
 
