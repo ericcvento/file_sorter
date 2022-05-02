@@ -3,8 +3,11 @@ from os import walk, makedirs
 import os.path
 import shutil
 
-frompath = "testdata"
-topath = "sorted"
+def GetDataPathFromUser(): 
+    print("Path of Source Data:")
+    userDataPath=input()
+    return userDataPath
+    #add error checking here
 
 def MakeFileList(path):
     print("Scanning Directory...")
@@ -24,7 +27,7 @@ def GetExensions(filelist):
         extensions.add(extension)
     return extensions
 
-def CreateToFolders(extensions):
+def CreateToFolders(extensions,topath):
     print("Creating Folders...")
     for ext in extensions:
         destpath = os.path.join(topath,ext)
@@ -47,7 +50,7 @@ def PrintDirectory(filelist,topath):
         dl.write('\n')
     dl.close()
 
-def CopyFiles(filelist):
+def CopyFiles(filelist,topath):
     print("Copying Files...")
     for f in filelist:
         fname, extension = os.path.splitext(f)
@@ -85,12 +88,15 @@ def CopyFiles(filelist):
         elif os.path.isfile(targetfile)==False:
             shutil.copy2(f,targetpath)
 
-def Main(frompath,topath):
+def Main():
+    topath="sorted"
+    print(topath) 
+    frompath=GetDataPathFromUser() 
     filelist=MakeFileList(frompath)
     extensions=GetExensions(filelist)
-    CreateToFolders(extensions)
+    CreateToFolders(extensions,topath)
     PrintDirectory(filelist,topath)
-    CopyFiles(filelist)
+    CopyFiles(filelist,topath)
 
-Main(frompath, topath)
+Main()
 
