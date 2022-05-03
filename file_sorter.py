@@ -24,7 +24,9 @@ def GetExensions(filelist):
     extensions=set()
     for f in filelist:
         fname, extension = os.path.splitext(f)
+        extension.lower()
         extensions.add(extension)
+    print (extensions)
     return extensions
 
 def CreateToFolders(extensions,topath):
@@ -56,6 +58,7 @@ def CopyFiles(filelist,topath):
         fname, extension = os.path.splitext(f)
         del fname
         
+        extension.lower()
         targetpath = os.path.join(topath,extension)
         targetbase = os.path.basename(f)
         targetfile = os.path.join(targetpath,targetbase)
@@ -90,7 +93,6 @@ def CopyFiles(filelist,topath):
 
 def Main():
     topath="sorted"
-    print(topath) 
     frompath=GetDataPathFromUser() 
     filelist=MakeFileList(frompath)
     extensions=GetExensions(filelist)
